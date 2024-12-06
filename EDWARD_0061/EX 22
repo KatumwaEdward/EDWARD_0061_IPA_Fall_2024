@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+long long calculate_address(long long base_address, int row_index, int col_index, int num_columns, int element_size) {
+    long long offset = (row_index * num_columns + col_index) * element_size;
+    
+    
+    return base_address + offset;
+}
+
+int main() {
+    
+    int num_rows, num_columns, element_size, row_index, col_index;
+    long long base_address;
+    
+    
+    printf("Enter the number of rows: ");
+    scanf("%d", &num_rows);
+    printf("Enter the number of columns: ");
+    scanf("%d", &num_columns);
+    
+    printf("Enter the size of each element (in bytes): ");
+    scanf("%d", &element_size);
+    
+    
+    printf("Enter the base address: ");
+    scanf("%lld", &base_address);
+    
+    
+    printf("Enter the row index: ");
+    scanf("%d", &row_index);
+    printf("Enter the column index: ");
+    scanf("%d", &col_index);
+    
+
+    if (row_index < 0 || row_index >= num_rows || col_index < 0 || col_index >= num_columns) {
+        printf("Error: Index out of bounds.\n");
+        return 1;
+    }
+    
+    long long address = calculate_address(base_address, row_index, col_index, num_columns, element_size);
+    
+    
+    printf("The address of A[%d][%d] is: %lld\n", row_index, col_index, address);
+    
+    return 0;
+}
